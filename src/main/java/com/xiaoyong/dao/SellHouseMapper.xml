@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyong.dao.SellHouseMapper">
+	<insert id="add">
+		insert into `tb_sell_house`
+		set id=#{id},keywords=#{keywords},
+		description=#{description},
+		provider=#{provider},title=#{title},
+		housetype=#{houseType},
+		`area`=#{area},toward=#{toward},
+		story=#{story},address=#{address},
+		sellprice=#{sellPrice},unitprice=#{unitPrice},
+		<if test="publishTime!=null and publishTime!=''">
+			publishtime=#{publishTime},
+		</if>
+		<if test="rmk!=null and rmk!=''">
+			rmk=#{rmk},
+		</if>
+		checkstatus=#{checkStatus};
+	</insert>
+	<select id="getlist" resultType="com.xiaoyong.domain.SellHouse">
+		SELECT * FROM `tb_sell_house`
+	</select>
+	<select id="getbyid" resultType="com.xiaoyong.domain.SellHouse">
+		SELECT * FROM `tb_sell_house` where id=#{id}
+	</select>
+	<update id="update">
+		update `tb_sell_house`
+		set keywords=#{keywords},
+		description=#{description},
+		provider=#{provider},title=#{title},
+		housetype=#{houseType},
+		`area`=#{area},toward=#{toward},
+		story=#{story},address=#{address},
+		sellprice=#{sellPrice},unitprice=#{unitPrice},
+		<if test="publishTime!=null and publishTime!=''">
+			publishtime=#{publishTime},
+		</if>
+		<if test="rmk!=null and rmk!=''">
+			rmk=#{rmk},
+		</if>
+		checkstatus=#{checkStatus} where id=#{id}
+	</update>
+</mapper>
